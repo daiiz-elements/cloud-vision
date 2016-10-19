@@ -1,0 +1,38 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<dom-module id="gs-img">
+  <template>
+    <style>
+      :host {
+        display: inline-block;
+        position: relative;
+        overflow: hidden;
+      }
+
+      :host img {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+    <img id="image" data-gs$="gs://[[src]]" src="https://storage.googleapis.com/[[src]]">
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'gs-img',
+
+      properties: {
+        src: {
+          type: String,
+          value: ''
+        }
+      },
+
+      gsPath: function () {
+        return this.$.image.dataset.gs;
+      }
+
+    });
+  </script>
+</dom-module>

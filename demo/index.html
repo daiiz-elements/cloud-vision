@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+  <head>
+    <title>cloud-vision demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <script>
+      /* this script must run before Polymer is imported */
+      window.Polymer = {
+        dom: 'shadow',
+        lazyRegister: true
+      };
+    </script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+
+    <link rel="import" href="../cloud-vision.html">
+
+    <style is="custom-style" include="demo-pages-shared-styles">
+    </style>
+
+    <style>
+      cloud-vision {
+        width: 100%;
+        height: 100%;
+      }
+
+      #keybox {
+        font-size: 12px;
+        padding-bottom: 20px;
+        padding-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="vertical-section-container centered">
+      <h3>Basic cloud-vision Demo</h3>
+      <demo-snippet>
+        <div id="keybox">
+          Your API Key: <input type="text" id="key">
+          <button id="callBtn">Call Vision API</button>
+        </div>
+
+        <template>
+          <cloud-vision api-key="" labels>
+            <gs-img src="daiiz-bucket-1/public/miil-photo-3.jpg"></gs-img>
+          </cloud-vision>
+        </template>
+      </demo-snippet>
+    </div>
+
+
+    <script>
+      document.querySelector('#callBtn').addEventListener('click', function (e) {
+        var cloudVision = document.querySelector('cloud-vision');
+        cloudVision.apiKey = document.querySelector('#key').value;
+      }, false);
+    </script>
+  </body>
+</html>
